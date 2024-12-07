@@ -3,6 +3,7 @@ import validator from 'validator';
 import { TStudentModel, TStudent } from './student.interface ';
 
 
+
 const studentSchema = new Schema<TStudent, TStudentModel>({
   id: { type: String, required: [true, 'Student ID is required'], unique: true },
   user: {
@@ -37,7 +38,7 @@ const studentSchema = new Schema<TStudent, TStudentModel>({
     required: [true, 'Gender is required'],
   },
   dateOfBirth: {
-    type: String
+    type: Date
   },
   email: {
     type: String,

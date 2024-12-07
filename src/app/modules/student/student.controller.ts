@@ -1,17 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { studentService } from './student.service';
 import sendResponse from '../../utils/sendResponse';
-import { NextFunction, Request, RequestHandler, Response } from 'express';
-
-// Higher Order Function
-const catchAsync = (fn: RequestHandler) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch(err => next(err))
-  }
-}
+import catchAsync from '../../utils/catchAsync';
 
 
-const getAllStudent = catchAsync(async (req, res, next) => {
+const getAllStudent = catchAsync(async (req, res) => {
   const result = await studentService.getAllStudentFromDB();
   sendResponse(res, {
     statusCode: 200,
@@ -22,7 +14,7 @@ const getAllStudent = catchAsync(async (req, res, next) => {
 });
 
 
-const getSingleStudent: RequestHandler = catchAsync(async (req, res, next) => {
+const getSingleStudent = catchAsync(async (req, res) => {
   const studentId = req.params.id;
   const result = await studentService.getSingleFromDB(studentId);
   sendResponse(res, {
@@ -34,7 +26,7 @@ const getSingleStudent: RequestHandler = catchAsync(async (req, res, next) => {
 })
 
 
-const deleteStudent: RequestHandler = catchAsync(async (req, res, next) => {
+const deleteStudent = catchAsync(async (req, res) => {
   const studentId = req.params.id;
   const result = await studentService.deleteStudentFromDB(studentId);
   if (result) {

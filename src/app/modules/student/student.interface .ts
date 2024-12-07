@@ -18,7 +18,7 @@ export type TStudent = {
     lastName: string;
   };
   gender: "male" | "female" | "other"; // Aligned with the schema and Zod validation
-  dateOfBirth: string;
+  dateOfBirth?: Date;
   email: string;
   contactNo: number;
   emergencyContactNo: number;
