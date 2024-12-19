@@ -5,7 +5,11 @@ import { TStudentModel, TStudent } from './student.interface ';
 
 
 const studentSchema = new Schema<TStudent, TStudentModel>({
-  id: { type: String, required: [true, 'Student ID is required'], unique: true },
+  id: {
+    type: String,
+    required: [true, 'Student ID is required'],
+    unique: true
+  },
   user: {
     type: Schema.Types.ObjectId,
     required: [true, 'User ID is required'],
@@ -48,6 +52,7 @@ const studentSchema = new Schema<TStudent, TStudentModel>({
       validator: (value: string) => validator.isEmail(value),
       message: "{VALUE} is note a valid email type"
     },
+    unique: true,
   },
   contactNo: {
     type: Number,
@@ -103,6 +108,10 @@ const studentSchema = new Schema<TStudent, TStudentModel>({
   },
   profileImg: {
     type: String
+  },
+  admissionSemester: {
+    type: Schema.Types.ObjectId,
+    ref: "AcademicSemesterModel"
   },
   isDeleted: {
     type: Boolean,

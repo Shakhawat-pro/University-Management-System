@@ -10,7 +10,7 @@ const createStudentZodSchema = z.object({
         lastName: z.string().min(1, { message: "Last name is required" }),
       }),
       gender: z.enum(['male', 'female', 'other'], { message: "Gender must be 'male', 'female', or 'other'" }),
-      dateOfBirth: z.date().optional(),
+      dateOfBirth: z.string().optional(),
       email: z.string().email({ message: "Invalid email address" }),
       contactNo: z.number(),
       emergencyContactNo: z.number(),
@@ -25,6 +25,7 @@ const createStudentZodSchema = z.object({
         motherOccupation: z.string().min(1, { message: "Mother's occupation is required" }),
         motherContactNo: z.number(),
       }),
+      admissionSemester: z.string(),
       profileImg: z.string().optional(),
     })
   })
